@@ -10,7 +10,7 @@ body {
   ::-webkit-scrollbar {
     width: 1px;
   }
-    /* Track */
+  /* Track */
   ::-webkit-scrollbar-track {
     background: #ffffff;
   }
@@ -30,8 +30,7 @@ code {
   font-family: "Inconsolata";
 }
 
-
 @font-face {
-	font-family: 'Inconsolata';
-	src: url(./assets/fonts/Inconsolata-Regular.ttf);
+  font-family: "Inconsolata";
+  src: url(./assets/fonts/Inconsolata-Regular.ttf);
 }
