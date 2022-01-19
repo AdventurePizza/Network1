@@ -21,7 +21,7 @@ const socketURL =
 
 const socket = io(socketURL, { transports: ["websocket"] });
 const dAppClient = new DAppClient({ name: "Beacon Docs" });
-const versionNames = ["0", "v1.0", "v2.0"];
+const versionNames = ["0", "v1.0", "v2.0", "v3.0"];
 const tempID = uuidv4();
 
 function App() {
@@ -43,7 +43,10 @@ function App() {
   const [usernameInput, setUsernameInput] = React.useState("");
   const { enqueueSnackbar } = useSnackbar();
   const [statusHistory, setStatusHistory] = useState([]);
-  const [version, setVersion] = useState(1);
+  const [
+    version,
+    //setVersion
+  ] = useState(1);
 
   const handleChangeUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value.length < 25) setUsernameInput(event.target.value);
@@ -94,8 +97,8 @@ function App() {
       if (activeAccount) {
         setSynced(
           activeAccount.address.slice(0, 6) +
-          "..." +
-          activeAccount.address.slice(32, 36)
+            "..." +
+            activeAccount.address.slice(32, 36)
         );
         setShowUnsync(true);
         let tempProfile = await getProfileFB(activeAccount.address);
@@ -216,12 +219,21 @@ function App() {
           value={version}
           label="version"
           onChange={(e) => {
-            window.location.href = "https://adventurepizza.github.io/Network2/";
+            console.log(e.target.value);
+            let target;
+            if (e.target.value === 2) {
+              target = "https://adventurepizza.github.io/Network2/";
+            } else if (e.target.value === 3) {
+              target = "https://adventurepizza.github.io/Network3/";
+            }
+
+            window.location.href = target;
             return null;
           }}
         >
           <MenuItem value={1}> {versionNames[1]}</MenuItem>
           <MenuItem value={2}> {versionNames[2]}</MenuItem>
+          <MenuItem value={3}> {versionNames[3]}</MenuItem>
         </Select>
         &nbsp; 📠
       </div>
@@ -372,7 +384,7 @@ function App() {
       </div>
 
       <div className="bottom-left" style={{ position: "absolute" }}>
-        <Button title={"Adventure Networks"} size={"small"} onClick={() => { }}>
+        <Button title={"Adventure Networks"} size={"small"} onClick={() => {}}>
           {" "}
           <div style={{ textAlign: "left" }}>
             {" "}
